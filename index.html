@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unrivaled Basketball Stats</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    canvas { max-width: 100%; margin-bottom: 40px; }
+    body { font-family: sans-serif; padding: 2em; }
+    h2 { margin-top: 2em; }
+    table.stats-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      margin-bottom: 2em;
+    }
+    .stats-table th, .stats-table td {
+      padding: 0.75em 1em;
+      text-align: left;
+    }
+    .stats-table th {
+      background: #f5f7fa;
+      font-weight: 700;
+      color: #333;
+      border-bottom: 2px solid #e0e6ed;
+    }
+    .stats-table tr:nth-child(even) {
+      background: #f9fafb;
+    }
+    .stats-table tr:hover {
+      background: #e6f0fa;
+      transition: background 0.2s;
+    }
+    .stats-table td {
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .stats-table tr:last-child td {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Unrivaled Basketball Stats</h1>
+  <h2>Points by Player</h2>
+  <canvas id="pointsChart"></canvas>
+  <h2>Rebounds by Player</h2>
+  <canvas id="reboundsChart"></canvas>
+  <h2>Assists by Player</h2>
+  <canvas id="assistsChart"></canvas>
+  <h2>Unrivaled vs WNBA Comparison</h2>
+  <p>WNBA data sourced from <a href="https://www.rotowire.com/wnba/stats.php" target="_blank">Rotowire WNBA Stats</a>.</p>
+  <label for="playerDropdown">Select Player:</label>
+  <select id="playerDropdown"></select>
+  <canvas id="compareChart"></canvas>
+  <h2>League Averages Comparison</h2>
+  <canvas id="leagueCompareChart"></canvas>
+
+  <h2>Unrivaled Points Distribution (Pie)</h2>
+  <canvas id="unrivaledPieChart"></canvas>
+
+  <h2>WNBA Top 10 Avg Points Per Game (Line)</h2>
+  <canvas id="wnbaLineChart"></canvas>
+
+  <h2>Unrivaled Player Stats Table</h2>
+  <input type="text" id="unrivaledSearch" placeholder="Search Unrivaled players..." style="margin-bottom:1em;width:100%;padding:0.5em;font-size:1em;">
+  <div id="unrivaledTable"></div>
+
+  <h2>WNBA Player Stats Table</h2>
+  <input type="text" id="wnbaSearch" placeholder="Search WNBA players..." style="margin-bottom:1em;width:100%;padding:0.5em;font-size:1em;">
+  <div id="wnbaTable"></div>
+
+  <script src="charts.js"></script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+{ 
+  "updated_at": "2026-01-07T23:36:20.618231",
+  "players": [
+    {
+      "player": "Chelsea Gray",
+      "games": 1.0,
+      "mins": 21.0,
+      "pts": 35.0,
+      "rebs": 5.0,
+      "asts": 8.0,
+      "stls": 3.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Paige Bueckers",
+      "games": 1.0,
+      "mins": 19.0,
+      "pts": 24.0,
+      "rebs": 5.0,
+      "asts": 6.0,
+      "stls": 0.0,
+      "blk": 2.0
+    },
+    {
+      "player": "Aaliyah Edwards",
+      "games": 1.0,
+      "mins": 18.0,
+      "pts": 23.0,
+      "rebs": 12.0,
+      "asts": 0.0,
+      "stls": 1.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Marina Mabrey",
+      "games": 1.0,
+      "mins": 22.0,
+      "pts": 23.0,
+      "rebs": 8.0,
+      "asts": 9.0,
+      "stls": 0.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Allisha Gray",
+      "games": 1.0,
+      "mins": 12.0,
+      "pts": 21.0,
+      "rebs": 9.0,
+      "asts": 3.0,
+      "stls": 2.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Tiffany Hayes",
+      "games": 1.0,
+      "mins": 16.0,
+      "pts": 20.0,
+      "rebs": 3.0,
+      "asts": 2.0,
+      "stls": 2.0,
+      "blk": 2.0
+    },
+    {
+      "player": "Azur\u00e1 Stevens",
+      "games": 1.0,
+      "mins": 10.0,
+      "pts": 19.0,
+      "rebs": 10.0,
+      "asts": 0.0,
+      "stls": 0.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Brittney Sykes",
+      "games": 1.0,
+      "mins": 13.0,
+      "pts": 19.0,
+      "rebs": 7.0,
+      "asts": 0.0,
+      "stls": 1.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Aliyah Boston",
+      "games": 1.0,
+      "mins": 17.0,
+      "pts": 18.0,
+      "rebs": 7.0,
+      "asts": 3.0,
+      "stls": 1.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Dominique Malonga",
+      "games": 1.0,
+      "mins": 18.0,
+      "pts": 17.0,
+      "rebs": 14.0,
+      "asts": 0.0,
+      "stls": 0.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Monique Billings",
+      "games": 1.0,
+      "mins": 13.0,
+      "pts": 16.0,
+      "rebs": 10.0,
+      "asts": 1.0,
+      "stls": 0.0,
+      "blk": 2.0
+    },
+    {
+      "player": "Rickea Jackson",
+      "games": 1.0,
+      "mins": 18.0,
+      "pts": 16.0,
+      "rebs": 5.0,
+      "asts": 1.0,
+      "stls": 0.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Jackie Young",
+      "games": 1.0,
+      "mins": 12.0,
+      "pts": 15.0,
+      "rebs": 5.0,
+      "asts": 1.0,
+      "stls": 1.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Veronica Burton",
+      "games": 1.0,
+      "mins": 13.0,
+      "pts": 14.0,
+      "rebs": 8.0,
+      "asts": 6.0,
+      "stls": 3.0,
+      "blk": 2.0
+    },
+    {
+      "player": "Arike Ogunbowale",
+      "games": 1.0,
+      "mins": 16.0,
+      "pts": 12.0,
+      "rebs": 3.0,
+      "asts": 3.0,
+      "stls": 1.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Breanna Stewart",
+      "games": 1.0,
+      "mins": 11.0,
+      "pts": 12.0,
+      "rebs": 5.0,
+      "asts": 0.0,
+      "stls": 0.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Erica Wheeler",
+      "games": 1.0,
+      "mins": 11.0,
+      "pts": 12.0,
+      "rebs": 5.0,
+      "asts": 2.0,
+      "stls": 3.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Kelsey Plum",
+      "games": 1.0,
+      "mins": 16.0,
+      "pts": 12.0,
+      "rebs": 5.0,
+      "asts": 4.0,
+      "stls": 0.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Shakira Austin",
+      "games": 1.0,
+      "mins": 14.0,
+      "pts": 12.0,
+      "rebs": 6.0,
+      "asts": 0.0,
+      "stls": 1.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Kelsey Mitchell",
+      "games": 1.0,
+      "mins": 15.0,
+      "pts": 11.0,
+      "rebs": 4.0,
+      "asts": 0.0,
+      "stls": 2.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Alanna Smith",
+      "games": 1.0,
+      "mins": 11.0,
+      "pts": 10.0,
+      "rebs": 6.0,
+      "asts": 1.0,
+      "stls": 0.0,
+      "blk": 5.0
+    },
+    {
+      "player": "Rhyne Howard",
+      "games": 1.0,
+      "mins": 16.0,
+      "pts": 10.0,
+      "rebs": 3.0,
+      "asts": 1.0,
+      "stls": 1.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Sonia Citron",
+      "games": 1.0,
+      "mins": 15.0,
+      "pts": 10.0,
+      "rebs": 6.0,
+      "asts": 2.0,
+      "stls": 0.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Natisha Hiedeman",
+      "games": 1.0,
+      "mins": 10.0,
+      "pts": 9.0,
+      "rebs": 4.0,
+      "asts": 1.0,
+      "stls": 1.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Courtney Williams",
+      "games": 1.0,
+      "mins": 11.0,
+      "pts": 8.0,
+      "rebs": 5.0,
+      "asts": 3.0,
+      "stls": 0.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Dearica Hamby",
+      "games": 1.0,
+      "mins": 18.0,
+      "pts": 8.0,
+      "rebs": 11.0,
+      "asts": 1.0,
+      "stls": 1.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Jordin Canada",
+      "games": 1.0,
+      "mins": 10.0,
+      "pts": 8.0,
+      "rebs": 2.0,
+      "asts": 2.0,
+      "stls": 2.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Kate Martin",
+      "games": 1.0,
+      "mins": 6.0,
+      "pts": 8.0,
+      "rebs": 3.0,
+      "asts": 0.0,
+      "stls": 0.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Lexie Hull",
+      "games": 1.0,
+      "mins": 12.0,
+      "pts": 7.0,
+      "rebs": 4.0,
+      "asts": 0.0,
+      "stls": 2.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Sug Sutton",
+      "games": 1.0,
+      "mins": 12.0,
+      "pts": 7.0,
+      "rebs": 0.0,
+      "asts": 4.0,
+      "stls": 5.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Alyssa Thomas",
+      "games": 1.0,
+      "mins": 9.0,
+      "pts": 6.0,
+      "rebs": 8.0,
+      "asts": 3.0,
+      "stls": 0.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Ezi Magbegor",
+      "games": 1.0,
+      "mins": 12.0,
+      "pts": 6.0,
+      "rebs": 8.0,
+      "asts": 3.0,
+      "stls": 1.0,
+      "blk": 4.0
+    },
+    {
+      "player": "Kiki Iriafen",
+      "games": 1.0,
+      "mins": 9.0,
+      "pts": 6.0,
+      "rebs": 8.0,
+      "asts": 2.0,
+      "stls": 0.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Maddy Siegrist",
+      "games": 1.0,
+      "mins": 9.0,
+      "pts": 6.0,
+      "rebs": 5.0,
+      "asts": 0.0,
+      "stls": 2.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Natasha Cloud",
+      "games": 1.0,
+      "mins": 16.0,
+      "pts": 6.0,
+      "rebs": 4.0,
+      "asts": 4.0,
+      "stls": 0.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Rachel Banham",
+      "games": 1.0,
+      "mins": 7.0,
+      "pts": 6.0,
+      "rebs": 1.0,
+      "asts": 0.0,
+      "stls": 0.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Rebecca Allen",
+      "games": 1.0,
+      "mins": 14.0,
+      "pts": 6.0,
+      "rebs": 4.0,
+      "asts": 1.0,
+      "stls": 0.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Cameron Brink",
+      "games": 1.0,
+      "mins": 6.0,
+      "pts": 4.0,
+      "rebs": 6.0,
+      "asts": 0.0,
+      "stls": 0.0,
+      "blk": 2.0
+    },
+    {
+      "player": "Naz Hillmon",
+      "games": 1.0,
+      "mins": 13.0,
+      "pts": 4.0,
+      "rebs": 8.0,
+      "asts": 1.0,
+      "stls": 0.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Saniya Rivers",
+      "games": 1.0,
+      "mins": 6.0,
+      "pts": 4.0,
+      "rebs": 2.0,
+      "asts": 1.0,
+      "stls": 2.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Temi F\u00e1gb\u00e9nl\u00e9",
+      "games": 1.0,
+      "mins": 9.0,
+      "pts": 4.0,
+      "rebs": 9.0,
+      "asts": 1.0,
+      "stls": 0.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Li Yueru",
+      "games": 1.0,
+      "mins": 6.0,
+      "pts": 3.0,
+      "rebs": 4.0,
+      "asts": 0.0,
+      "stls": 0.0,
+      "blk": 1.0
+    },
+    {
+      "player": "Aari McDonald",
+      "games": 1.0,
+      "mins": 6.0,
+      "pts": 2.0,
+      "rebs": 1.0,
+      "asts": 0.0,
+      "stls": 0.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Brittney Griner",
+      "games": 1.0,
+      "mins": 2.0,
+      "pts": 2.0,
+      "rebs": 1.0,
+      "asts": 0.0,
+      "stls": 0.0,
+      "blk": 0.0
+    },
+    {
+      "player": "Rae Burrell",
+      "games": 1.0,
+      "mins": 8.0,
+      "pts": 2.0,
+      "rebs": 3.0,
+      "asts": 1.0,
+      "stls": 1.0,
+      "blk": 1.0
+    }
+  ]
+}
