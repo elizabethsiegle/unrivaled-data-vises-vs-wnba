@@ -59,7 +59,8 @@ playwright install chromium
 playwright install-deps
 ```
 
-3. Systemd keeps our app running even after we disconnect.
+3. Systemd keeps our app running 24/7 so you can access the web server dashboard at any time at http://143.110.229.164/ (and you could hook a domain up to it to make it prettier)
+
 a.  Create service file!
 ```bash
 nano /etc/systemd/system/unrivaled.service
