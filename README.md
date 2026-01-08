@@ -4,7 +4,8 @@ Unrivaled is a fast-paced, 3v3 women’s basketball league. Many of the players 
 
 This web app that runs a Cron job nightly to check the [Unrivaled stats website](https://www.unrivaled.basketball/stats/player) and displays some interactive data visualizations of the scraped stats with [chart.js](https://www.chartjs.org/), as well as compares the data to [existing 2025 WNBA data](https://www.rotowire.com/wnba/stats.php) (the season ended.) There’s a chatbot using [DigitalOcean Gradient AI](https://www.digitalocean.com/products/gradient/platform) with a knowledge base containing WNBA data and also self-updates/scrapes on the Unrivaled stats website nightly. It’s deployed to a [DigitalOcean droplet](https://www.digitalocean.com/products/droplets). 
 
-[![Watch the video](/gh-media/unrivaleddrop-thumbnail-github.png)(github url/mp4)]
+Click to watch the full demo:
+[![Watch the video](/gh-media/unrivaleddrop-thumbnail-github.png)](https://youtu.be/A7BZIVa03W4)
 
 ## Features
 
