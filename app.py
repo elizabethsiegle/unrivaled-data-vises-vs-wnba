@@ -1,15 +1,14 @@
-# app.py
 from fastapi import FastAPI
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 import json
 
 app = FastAPI()
 
-@app.get("/")
-def index():
-    return FileResponse("index.html")
-
-@app.get("/data")
+@app.get("/api/data")
 def data():
     with open("data.json") as f:
         return JSONResponse(json.load(f))
+
+# Mount static files - use absolute path
+app.mount("/", StaticFiles(directory="/unrivaled-scrape-drop", html=True), name="static")
