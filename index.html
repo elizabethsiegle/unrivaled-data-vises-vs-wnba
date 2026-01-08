@@ -5,74 +5,350 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unrivaled Basketball Stats</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
   <style>
-    canvas { max-width: 100%; margin-bottom: 40px; }
-    body { font-family: sans-serif; padding: 2em; }
-    h2 { margin-top: 2em; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2em 1em 100px 1em;
+      color: #2d3748;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 3em;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 { 
+      font-size: 2.5em;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5em;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.1em;
+      color: #718096;
+      margin-bottom: 3em;
+      line-height: 1.6;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .chart-section {
+      background: white;
+      border-radius: 16px;
+      padding: 2em;
+      margin-bottom: 2em;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .chart-section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    h2 { 
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 1em;
+      padding-bottom: 0.5em;
+      border-bottom: 3px solid #667eea;
+      display: inline-block;
+    }
+
+    canvas { 
+      max-width: 100%; 
+      margin-top: 1em;
+    }
+
+    label {
+      font-weight: 600;
+      color: #4a5568;
+      margin-right: 1em;
+      font-size: 1em;
+    }
+
+    select, input[type="text"] {
+      padding: 0.75em 1em;
+      font-size: 1em;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      background: white;
+      color: #2d3748;
+      transition: all 0.3s ease;
+      outline: none;
+      font-family: inherit;
+    }
+
+    select {
+      cursor: pointer;
+      min-width: 250px;
+    }
+
+    select:hover, input[type="text"]:hover {
+      border-color: #667eea;
+    }
+
+    select:focus, input[type="text"]:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      margin-bottom: 1.5em;
+    }
+
+    input[type="text"]::placeholder {
+      color: #a0aec0;
+    }
+
     table.stats-table {
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
-      background: #fff;
+      background: white;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      margin-bottom: 2em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
+
     .stats-table th, .stats-table td {
-      padding: 0.75em 1em;
+      padding: 1em 1.25em;
       text-align: left;
     }
+
     .stats-table th {
-      background: #f5f7fa;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       font-weight: 700;
-      color: #333;
-      border-bottom: 2px solid #e0e6ed;
+      color: white;
+      text-transform: uppercase;
+      font-size: 0.85em;
+      letter-spacing: 0.5px;
     }
+
     .stats-table tr:nth-child(even) {
-      background: #f9fafb;
+      background: #f7fafc;
     }
+
     .stats-table tr:hover {
-      background: #e6f0fa;
-      transition: background 0.2s;
+      background: #edf2f7;
+      transition: background 0.2s ease;
     }
+
     .stats-table td {
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid #e2e8f0;
+      color: #4a5568;
+      font-size: 0.95em;
     }
+
     .stats-table tr:last-child td {
       border-bottom: none;
+    }
+
+    a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: #764ba2;
+      text-decoration: underline;
+    }
+
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      border-top: 3px solid #667eea;
+      font-size: 14px;
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    .player-selector {
+      background: #f7fafc;
+      padding: 1.5em;
+      border-radius: 12px;
+      margin-bottom: 2em;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 2em 1.5em;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+
+      .player-selector {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      select {
+        width: 100%;
+      }
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Info banner */
+    .info-banner {
+      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+      color: white;
+      padding: 1.5em;
+      border-radius: 12px;
+      margin-bottom: 2em;
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    .info-banner h3 {
+      margin: 0 0 0.5em 0;
+      font-size: 1.2em;
+    }
+
+    .info-banner ul {
+      margin: 0.5em 0 0 1.5em;
+      line-height: 1.8;
+    }
+
+    .info-banner li {
+      margin: 0.3em 0;
+    }
+
+    /* Loading animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .chart-section {
+      animation: fadeIn 0.6s ease-out;
     }
   </style>
 </head>
 <body>
-  <h1>Unrivaled Basketball Stats</h1>
-  <h2>Points by Player</h2>
-  <canvas id="pointsChart"></canvas>
-  <h2>Rebounds by Player</h2>
-  <canvas id="reboundsChart"></canvas>
-  <h2>Assists by Player</h2>
-  <canvas id="assistsChart"></canvas>
-  <h2>Unrivaled vs WNBA Comparison</h2>
-  <p>WNBA data sourced from <a href="https://www.rotowire.com/wnba/stats.php" target="_blank">Rotowire WNBA Stats</a>.</p>
-  <label for="playerDropdown">Select Player:</label>
-  <select id="playerDropdown"></select>
-  <canvas id="compareChart"></canvas>
-  <h2>League Averages Comparison</h2>
-  <canvas id="leagueCompareChart"></canvas>
+  <div class="container">
+    <h1>🏀 Unrivaled Basketball Stats Dashboard</h1>
+    <p class="subtitle">Explore detailed basketball statistics, compare players and how they did in the WNBA vs how they're doing in Unrivaled, and interact with an AI chatbot. Built with DigitalOcean Droplets, Gradient AI, FastAPI, Playwright & Cron</p>
+    
+    <div class="info-banner">
+      <h3>🎮 Interactive Chart Controls</h3>
+      <ul>
+        <li><strong>🖱️ Hover:</strong> See detailed stats and comparisons in tooltips</li>
+        <li><strong>🔍 Scroll:</strong> Zoom in/out on any chart (use mouse wheel)</li>
+        <li><strong>✋ Drag:</strong> Pan around zoomed charts to explore data</li>
+        <li><strong>👆 Click bars/points:</strong> Get detailed player information popup</li>
+        <li><strong>🎯 Click legend:</strong> Toggle datasets on/off</li>
+        <li><strong>📱 Pinch:</strong> Zoom on mobile/tablet devices</li>
+      </ul>
+    </div>
+    
+    <div class="chart-section">
+      <h2>Points by Player</h2>
+      <canvas id="pointsChart"></canvas>
+    </div>
 
-  <h2>Unrivaled Points Distribution (Pie)</h2>
-  <canvas id="unrivaledPieChart"></canvas>
+    <div class="chart-section">
+      <h2>Rebounds by Player</h2>
+      <canvas id="reboundsChart"></canvas>
+    </div>
 
-  <h2>WNBA Top 10 Avg Points Per Game (Line)</h2>
-  <canvas id="wnbaLineChart"></canvas>
+    <div class="chart-section">
+      <h2>Assists by Player</h2>
+      <canvas id="assistsChart"></canvas>
+    </div>
 
-  <h2>Unrivaled Player Stats Table</h2>
-  <input type="text" id="unrivaledSearch" placeholder="Search Unrivaled players..." style="margin-bottom:1em;width:100%;padding:0.5em;font-size:1em;">
-  <div id="unrivaledTable"></div>
+    <div class="chart-section">
+      <h2>Unrivaled vs WNBA Comparison</h2>
+      <p style="color: #718096; margin-bottom: 1em;">WNBA data sourced from <a href="https://www.rotowire.com/wnba/stats.php" target="_blank">Rotowire WNBA Stats</a>.</p>
+      <div class="player-selector">
+        <label for="playerDropdown">Select Player:</label>
+        <select id="playerDropdown"></select>
+      </div>
+      <canvas id="compareChart"></canvas>
+    </div>
 
-  <h2>WNBA Player Stats Table</h2>
-  <input type="text" id="wnbaSearch" placeholder="Search WNBA players..." style="margin-bottom:1em;width:100%;padding:0.5em;font-size:1em;">
-  <div id="wnbaTable"></div>
+    <div class="chart-section">
+      <h2>League Averages Comparison</h2>
+      <canvas id="leagueCompareChart"></canvas>
+    </div>
+
+    <div class="chart-section">
+      <h2>Unrivaled Points Distribution</h2>
+      <canvas id="unrivaledPieChart"></canvas>
+    </div>
+
+    <div class="chart-section">
+      <h2>WNBA Top 10 Avg Points Per Game</h2>
+      <canvas id="wnbaLineChart"></canvas>
+    </div>
+
+    <div class="chart-section">
+      <h2>Unrivaled Player Stats Table</h2>
+      <input type="text" id="unrivaledSearch" placeholder="🔍 Search Unrivaled players...">
+      <div id="unrivaledTable"></div>
+    </div>
+
+    <div class="chart-section">
+      <h2>WNBA Player Stats Table</h2>
+      <input type="text" id="wnbaSearch" placeholder="🔍 Search WNBA players...">
+      <div id="wnbaTable"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    💜 Built with FastAPI, Chart.js, Playwright & DigitalOcean | Data updates nightly at midnight
+  </div>
 
   <script src="charts.js"></script>
   <script async
@@ -86,5 +362,8 @@
   data-starting-message="Hello! How can I help you today?"
   data-logo="/static/chatbot/icons/default-agent.svg">
 </script>
+<div class="footer">
+    made w/ ❤️ in sf🌉 | view code👩🏻‍💻: <a href="https://github.com/elizabethsiegle/image-gen-falai-do-streamlit-demo" target="_blank" style="color: #ff6b6b;">on github</a>
+</div>
 </body>
 </html>
