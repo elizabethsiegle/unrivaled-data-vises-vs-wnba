@@ -22,8 +22,8 @@ Click to watch the full demo:
 **Deployment**: DigitalOcean Droplet, Nginx, Systemd  
 
 ## Quick Start
-Make a droplet. Get YOUR_DROPLET_IP here
-![/gh-media/dropletscreenshotconsole.png](screenshot of DigitalOcean console showing my Droplet)
+[Create a droplet here](https://cloud.digitalocean.com/droplets). Get YOUR_DROPLET_IP here in the console under <em>ipv4</em>
+![screenshot of DigitalOcean console showing my Droplet](/gh-media/dropletscreenshotconsole.png)
 
 ```bash
 # Setup environment
@@ -127,7 +127,7 @@ crontab -e
 Run locally with
 `python3 -m http.server 8000` -> view: `http://localhost:8000/index.html`
 Whenever you edit a file locally, copy it over to the Droplet:
-`scp {charts.js} root@YOUR_DROPLET_IP:/unrivaled-scrape-drop
+`scp {charts.js} root@YOUR_DROPLET_IP:/unrivaled-scrape-drop`
 
 
 ## Project Structure
