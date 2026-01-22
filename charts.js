@@ -1,4 +1,7 @@
-// charts.js
+/**
+ * charts.js - Production Version x manual editing x back to normal???
+ */
+
 // Load data from data.json and render interactive charts using Chart.js
 function normalizeName(name) {
   return name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
@@ -105,9 +108,9 @@ fetch('data.json')
     const players = data.players;
     console.log('Loaded players:', players);
     const names = players.map(p => p.player);
-    const points = players.map(p => p.pts);
-    const rebounds = players.map(p => p.rebs);
-    const assists = players.map(p => p.asts);
+    const points = players.map(p => p.points);
+    const rebounds = players.map(p => p.rebounds);
+    const assists = players.map(p => p.assists);
     console.log('Names:', names);
     console.log('Points:', points);
 
@@ -131,7 +134,7 @@ fetch('data.json')
           if (elements.length > 0) {
             const index = elements[0].index;
             const player = players[index];
-            alert(`${player.player}\n\n📊 Full Stats:\nPoints: ${player.pts}\nRebounds: ${player.rebs}\nAssists: ${player.asts}\nGames: ${player.games}\nMinutes: ${player.mins}\nSteals: ${player.stls}\nBlocks: ${player.blk}`);
+            alert(`${player.player}\n\n📊 Full Stats:\nPoints: ${player.points}\nRebounds: ${player.rebounds}\nAssists: ${player.assists}\nGames: ${player.games}\nMinutes: ${player.minutes}\nSteals: ${player.steals}\nBlocks: ${player.blocks}`);
           }
         },
         plugins: {
@@ -142,7 +145,7 @@ fetch('data.json')
             callbacks: {
               afterLabel: (context) => {
                 const player = players[context.dataIndex];
-                return [`Rebounds: ${player.rebs}`, `Assists: ${player.asts}`, `Games: ${player.games}`];
+                return [`Rebounds: ${player.rebounds}`, `Assists: ${player.assists}`, `Games: ${player.games}`];
               }
             }
           }
@@ -198,7 +201,7 @@ fetch('data.json')
           if (elements.length > 0) {
             const index = elements[0].index;
             const player = players[index];
-            alert(`${player.player}\n\n📊 Contribution to Total Points\n\nPoints: ${player.pts}\nRebounds: ${player.rebs}\nAssists: ${player.asts}`);
+            alert(`${player.player}\n\n📊 Contribution to Total Points\n\nPoints: ${player.points}\nRebounds: ${player.rebounds}\nAssists: ${player.assists}`);
           }
         }
       }
@@ -224,7 +227,7 @@ fetch('data.json')
           if (elements.length > 0) {
             const index = elements[0].index;
             const player = players[index];
-            alert(`${player.player}\n\n📊 Full Stats:\nRebounds: ${player.rebs}\nPoints: ${player.pts}\nAssists: ${player.asts}\nGames: ${player.games}`);
+            alert(`${player.player}\n\n📊 Full Stats:\nRebounds: ${player.rebounds}\nPoints: ${player.points}\nAssists: ${player.assists}\nGames: ${player.games}`);
           }
         },
         plugins: {
@@ -254,7 +257,7 @@ fetch('data.json')
           if (elements.length > 0) {
             const index = elements[0].index;
             const player = players[index];
-            alert(`${player.player}\n\n📊 Full Stats:\nAssists: ${player.asts}\nPoints: ${player.pts}\nRebounds: ${player.rebs}\nGames: ${player.games}`);
+            alert(`${player.player}\n\n📊 Full Stats:\nAssists: ${player.assists}\nPoints: ${player.points}\nRebounds: ${player.rebounds}\nGames: ${player.games}`);
           }
         },
         plugins: {
@@ -266,11 +269,11 @@ fetch('data.json')
 
     // Scatter/Bubble Chart: Scoring vs Playmaking
     const scatterData = players.map((p, i) => ({
-      x: p.pts || 0,
-      y: p.asts || 0,
-      r: Math.max((p.rebs || 0) * 0.8, 5),
+      x: p.points || 0,
+      y: p.assists || 0,
+      r: Math.max((p.rebounds || 0) * 0.8, 5),
       player: p.player,
-      rebounds: p.rebs || 0
+      rebounds: p.rebounds || 0
     }));
 
     new Chart(document.getElementById('scatterChart'), {
@@ -322,7 +325,7 @@ fetch('data.json')
     });
 
     // Line Chart: Top 5 Player Stat Profiles
-    const top5 = [...players].sort((a, b) => (b.pts || 0) - (a.pts || 0)).slice(0, 5);
+    const top5 = [...players].sort((a, b) => (b.points || 0) - (a.points || 0)).slice(0, 5);
     const profileColors = ['#667eea', '#ff8c00', '#2ecc71', '#e74c3c', '#9b59b6'];
 
     new Chart(document.getElementById('statProfileChart'), {
@@ -331,7 +334,7 @@ fetch('data.json')
         labels: ['PTS', 'REB', 'AST', 'STL', 'BLK'],
         datasets: top5.map((p, i) => ({
           label: p.player,
-          data: [p.pts || 0, p.rebs || 0, p.asts || 0, p.stls || 0, p.blk || 0],
+          data: [p.points || 0, p.rebounds || 0, p.assists || 0, p.steals || 0, p.blocks || 0],
           borderColor: profileColors[i],
           backgroundColor: profileColors[i] + '33',
           fill: true,
@@ -366,7 +369,7 @@ fetch('data.json')
         onClick: (event, elements) => {
           if (elements.length > 0) {
             const p = top5[elements[0].datasetIndex];
-            alert(`${p.player}\n\n📊 Full Profile:\nPoints: ${p.pts}\nRebounds: ${p.rebs}\nAssists: ${p.asts}\nSteals: ${p.stls}\nBlocks: ${p.blk}`);
+            alert(`${p.player}\n\n📊 Full Profile:\nPoints: ${p.points}\nRebounds: ${p.rebounds}\nAssists: ${p.assists}\nSteals: ${p.steals}\nBlocks: ${p.blocks}`);
           }
         }
       }
@@ -437,7 +440,7 @@ fetch('data.json')
                   
                   let html = '<table class="stats-table"><thead><tr><th>Player</th><th>Points</th><th>Rebounds</th><th>Assists</th></tr></thead><tbody>';
                   paginated.forEach(p => {
-                    html += `<tr><td>${p.player}</td><td>${p.pts}</td><td>${p.rebs}</td><td>${p.asts}</td></tr>`;
+                    html += `<tr><td>${p.player}</td><td>${p.points}</td><td>${p.rebounds}</td><td>${p.assists}</td></tr>`;
                   });
                   html += '</tbody></table>';
                   
@@ -553,7 +556,7 @@ fetch('data.json')
               datasets: [
                 {
                   label: 'Unrivaled',
-                  data: [unrivaledStats.pts, unrivaledStats.rebs, unrivaledStats.asts],
+                  data: [unrivaledStats.points, unrivaledStats.rebounds, unrivaledStats.assists],
                   backgroundColor: 'rgba(102, 126, 234, 0.8)',
                   borderColor: 'rgba(102, 126, 234, 1)',
                   borderWidth: 2,
@@ -688,7 +691,7 @@ fetch('data.json')
             const wnbaStats = wnbaMap[normalizeName(name)];
             
             const wnbaPPG = wnbaStats.points;
-            const unrivaledPPG = unrivaledStats.pts;
+            const unrivaledPPG = unrivaledStats.points;
             const improvementPct = ((unrivaledPPG - wnbaPPG) / wnbaPPG) * 100;
 
             return {
