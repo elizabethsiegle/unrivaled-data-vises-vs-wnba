@@ -1,14 +1,12 @@
 ## AI Eng SF meetup: Rise of Background Agents
 - [ ] 👋🌊  
 - [ ] Demo 🧪
-- [ ] Sports analyst agent x dashboards📊
-    - Structured 🏀 datasets
-    - Boring (+reliable) infra
-- [ ] ~~Data Pipelines~~ knowledge engine
-    - ~~ingest + store~~ ground + synthesize
+- [ ] **~~Data Pipelines~~ Knowledge Engine** (Grounding the agent)
+    - ~~multisource ingestion + store~~ context synthesis
+    - ~~normalize~~ entity resolution
     - Serve🍦:
-        - dashboards read structured data
-        - agent queries stats
+        - dashboards📊 
+        - 🕵️‍♀️ queries stats
 
 - [ ] Cron vs Agents🕵️‍♀️
 ![alt text](cronjobtweet.png)
@@ -18,13 +16,12 @@
 | Nature    | Deterministic (scheduled) | !-deterministic (autonomous)
 | **Logic** | Executes a fixed set of instructions at a specific time. | Reasons through a goal and selects tools to achieve it. |
 | **Resilience** | Brittle; 😩 if DOM changes or down API is down. | Self-healing |
-| **Cost** | Negligible; uses standard server resources. | Variable; involves LLM tokens and inference compute. |
+| **Cost** | Negligible (server) | Variable (tokens, inf compute). |
 | **Analogy** | ⏰ | 👩‍🍳 |
 
 - [ ] cron = trigger, scraper = "worker"
 - [ ] 2026 Prediction: Agent harnesses replace benchmarks
-    - Benchmarks are saturated. No longer can we truly distinguish between a "good" and "great" model. Tough to measure meaningful progress.
-    - Real proof = agents doing multi-day tasks on real infra
+    - Real proof = agents doing multi-day tasks
     - DO droplets, cron jobs = perfect harness playground
 
 - [ ] Where GPUs fit
