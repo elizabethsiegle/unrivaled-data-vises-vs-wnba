@@ -130,6 +130,83 @@ Run locally with
 Whenever you edit a file locally, copy it over to the Droplet:
 `scp {charts.js} root@YOUR_DROPLET_IP:/unrivaled-scrape-drop`
 
+## Domain Setup & SSL
+Once your dashboard is live at your IP, follow these steps to connect your domain and secure it with HTTPS.
+
+1. Move Project to `/var/www`
+Standard practice is to serve web apps from /var/www. Create the directory and move your files there:
+```bash
+# Create the directory
+mkdir -p /var/www/unrivaled-scrape-drop
+
+# Move your files
+mv /unrivaled-scrape-drop/* /var/www/unrivaled-scrape-drop/
+
+# Set ownership to Nginx user (www-data)
+sudo chown -R www-data:www-data /var/www/unrivaled-scrape-drop
+sudo chmod -R 755 /var/www/unrivaled-scrape-drop
+```
+1a. update service paths
+Update `WorkingDirectory` and `ExecStart` paths in your `unrivaled.service` file and your `crontab` to reflect the new location:
+```toml
+WorkingDirectory=/var/www/unrivaled-scrape-drop
+ExecStart=/var/www/unrivaled-scrape-drop/env/bin/uvicorn app:app --host 0.0.0.0 --port 8000
+```
+In `crontab -e`:
+```bash
+0 0 * * * cd /var/www/unrivaled-scrape-drop && /var/www/unrivaled-scrape-drop/env/bin/python3 scraper.py >> /var/log/scraper.log 2>&1
+2. Configure DNS
+Go to your domain registrar (e.g., Namecheap, Google, GoDaddy) and point your domain to DigitalOcean:
+
+- A Record: Set `@` to your `YOUR_DROPLET_IP`.
+
+- A Record: Set `www` to your `YOUR_DROPLET_IP`.
+
+3. Update Nginx for the Domain
+Update your Nginx configuration to recognize your domain and serve the files from the new /var/www path. (while SSH-d in)
+```bash
+nano /etc/nginx/sites-available/unrivaled
+```
+Update the file with this config:
+```
+server {
+   listen 80;
+   server_name unrivaleddata.com www.unrivaleddata.com;
+
+   # Point to the new /var/www directory
+   root /var/www/unrivaled-scrape-drop;
+
+   location / {
+       proxy_pass http://127.0.0.1:8000;
+       proxy_set_header Host $host;
+       proxy_set_header X-Real-IP $remote_addr;
+   }
+
+   # Ensure JSON files are served correctly for Chart.js
+   location ~* \.json$ {
+       add_header Content-Type application/json;
+       add_header Access-Control-Allow-Origin *;
+   }
+}
+```
+Test and reload:
+```bash
+nginx -t
+systemctl reload nginx
+```
+
+4. install SSL
+```bash
+sudo apt update
+sudo apt install python3-certbot-nginx
+sudo certbot --nginx -d unrivaleddata.com -d www.unrivaleddata.com
+```
+4a. Permission fix (post-deploy)
+If your charts don't load after the move, ensure the Nginx user has permission to read your project folder:
+```bash
+sudo chown -R www-data:www-data /unrivaled-scrape-drop
+sudo chmod -R 755 /unrivaled-scrape-drop
+```
 
 ## Project Structure
 
