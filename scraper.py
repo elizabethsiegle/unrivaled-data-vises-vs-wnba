@@ -19,27 +19,19 @@ def scrape():
         for row in rows:
             cells = [c.inner_text().strip() for c in row.query_selector_all("td")]
             # Expect: [rank, player, games, points, rebounds, assists, ...]
-            if len(cells) < 6:
+            if len(cells) < 20: # check to ensure all columns exist
                 continue
             try:
-                player = cells[1]
-                gp = float(cells[2])
-                mins = float(cells[3])
-                pts = float(cells[4])
-                rebs = float(cells[7])
-                asts = float(cells[8])
-                stls = float(cells[9])
-                blk = float(cells[10])
+                # 0:RK, 1:PLAYER, 2:GP, 3:MIN, 4:PTS, 5:FGM, 6:FGA, 7:FG%... 14:REB, 15:AST
                 players.append({
-                    "player": player,
-                    "games": gp,
-                    "mins": mins,
-                    "pts": pts,
-                    "rebs": rebs,
-                    "asts": asts,
-                    "stls": stls,
-                    "blk": blk
-
+                    "player": cells[1],
+                    "games": float(cells[2]),
+                    "mins": float(cells[3]),
+                    "pts": float(cells[4]),
+                    "rebs": float(cells[16]), # Corrected index
+                    "asts": float(cells[17]), # Corrected index
+                    "stls": float(cells[18]), # Corrected index
+                    "blk": float(cells[19])   # Corrected index
                 })
             except Exception as e:
                 print(f"Skipping row with invalid stats: {cells} ({e})")

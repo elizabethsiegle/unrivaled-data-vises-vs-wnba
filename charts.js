@@ -3,8 +3,19 @@
  */
 
 // Load data from data.json and render interactive charts using Chart.js
+/**
+ * Advanced name normalization for reliable data matching.
+ * Handles accents, special characters (apostrophes/hyphens), 
+ * case sensitivity, and unexpected whitespace.
+ */
 function normalizeName(name) {
-  return name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+  if (!name) return "";
+  return name
+    .normalize("NFD")                         // Decompose accented characters
+    .replace(/[\u0300-\u036f]/g, "")          // Remove diacritical marks
+    .replace(/[^a-zA-Z0-9]/g, "")             // Remove all non-alphanumeric characters (e.g., ' or -)
+    .toLowerCase()                            // Standardize to lowercase
+    .trim();                                  // Remove leading/trailing whitespace
 }
 
 // Common chart options for interactivity
@@ -108,9 +119,9 @@ fetch('data.json')
     const players = data.players;
     console.log('Loaded players:', players);
     const names = players.map(p => p.player);
-    const points = players.map(p => p.points);
-    const rebounds = players.map(p => p.rebounds);
-    const assists = players.map(p => p.assists);
+    const points = players.map(p => p.pts);
+    const rebounds = players.map(p => p.rebs);
+    const assists = players.map(p => p.asts);
     console.log('Names:', names);
     console.log('Points:', points);
 
@@ -269,11 +280,11 @@ fetch('data.json')
 
     // Scatter/Bubble Chart: Scoring vs Playmaking
     const scatterData = players.map((p, i) => ({
-      x: p.points || 0,
-      y: p.assists || 0,
-      r: Math.max((p.rebounds || 0) * 0.8, 5),
+      x: p.pts || 0,
+      y: p.asts || 0,
+      r: Math.max((p.rebs || 0) * 0.8, 5),
       player: p.player,
-      rebounds: p.rebounds || 0
+      rebounds: p.rebs || 0
     }));
 
     new Chart(document.getElementById('scatterChart'), {
@@ -334,7 +345,7 @@ fetch('data.json')
         labels: ['PTS', 'REB', 'AST', 'STL', 'BLK'],
         datasets: top5.map((p, i) => ({
           label: p.player,
-          data: [p.points || 0, p.rebounds || 0, p.assists || 0, p.steals || 0, p.blocks || 0],
+          data: [p.pts || 0, p.rebs || 0, p.asts || 0, p.stls || 0, p.blks || 0],
           borderColor: profileColors[i],
           backgroundColor: profileColors[i] + '33',
           fill: true,
@@ -369,7 +380,7 @@ fetch('data.json')
         onClick: (event, elements) => {
           if (elements.length > 0) {
             const p = top5[elements[0].datasetIndex];
-            alert(`${p.player}\n\n📊 Full Profile:\nPoints: ${p.points}\nRebounds: ${p.rebounds}\nAssists: ${p.assists}\nSteals: ${p.steals}\nBlocks: ${p.blocks}`);
+            alert(`${p.player}\n\n📊 Full Profile:\nPoints: ${p.pts}\nRebounds: ${p.rebs}\nAssists: ${p.asts}\nSteals: ${p.stls}\nBlocks: ${p.blks}`);
           }
         }
       }
@@ -440,7 +451,7 @@ fetch('data.json')
                   
                   let html = '<table class="stats-table"><thead><tr><th>Player</th><th>Points</th><th>Rebounds</th><th>Assists</th></tr></thead><tbody>';
                   paginated.forEach(p => {
-                    html += `<tr><td>${p.player}</td><td>${p.points}</td><td>${p.rebounds}</td><td>${p.assists}</td></tr>`;
+                    html += `<tr><td>${p.player}</td><td>${p.pts}</td><td>${p.rebs}</td><td>${p.asts}</td></tr>`;
                   });
                   html += '</tbody></table>';
                   
@@ -556,7 +567,7 @@ fetch('data.json')
               datasets: [
                 {
                   label: 'Unrivaled',
-                  data: [unrivaledStats.points, unrivaledStats.rebounds, unrivaledStats.assists],
+                  data: [unrivaledStats.pts, unrivaledStats.rebs, unrivaledStats.asts],
                   backgroundColor: 'rgba(102, 126, 234, 0.8)',
                   borderColor: 'rgba(102, 126, 234, 1)',
                   borderWidth: 2,
@@ -691,7 +702,7 @@ fetch('data.json')
             const wnbaStats = wnbaMap[normalizeName(name)];
             
             const wnbaPPG = wnbaStats.points;
-            const unrivaledPPG = unrivaledStats.points;
+            const unrivaledPPG = unrivaledStats.pts;
             const improvementPct = ((unrivaledPPG - wnbaPPG) / wnbaPPG) * 100;
 
             return {
