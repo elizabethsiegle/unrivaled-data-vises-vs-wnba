@@ -1,4 +1,4 @@
-## AI Eng SF meetup: Make AI work for you in the background
+## AI Eng SF: Make AI work for you in the background
 - [ ] 👋🌊  
 - [ ] Demo 🧪
 - [ ] **~~Data Pipelines~~ Knowledge Engine** (Grounding the agent)
@@ -14,21 +14,17 @@
 | :--- | :--- | :--- |
 | Nature    | Deterministic (scheduled) | !-deterministic (autonomous)
 | **Logic** | Executes a fixed set of instructions at a specific time. | Reasons through a goal and selects tools to achieve it. |
-| **Resilience** | Brittle; 😩 if DOM changes or down API is down. | Self-healing |
+| **Resilience** | Brittle; 😩 if DOM changes or down API | Self-healing |
 | **Cost** | Negligible (server) | Variable (tokens, inf compute). |
-| **Analogy** | ⏰ | 👩‍🍳 |
 
-- [ ] cron = trigger, scraper = "worker"
 - [ ] 2026 Prediction: Agent harnesses replace benchmarks
     - Real proof = agents doing multi-day tasks
     - DO droplets, cron jobs = perfect harness playground
 
 
 - [ ] What's Next 🚀
-    - cron trigger agent
-    - Claude Code on [DO GPU droplets](https://www.digitalocean.com/products/gradient/gpu-droplets)
     - Multimodal (📹 analysis)
-    - Predictive Betting/analytics
+    - Claude Code on [DO GPU droplets](https://www.digitalocean.com/products/gradient/gpu-droplets)
     - GitHub: [elizabethsiegle/unrivaled-data-vises-vs-wnba](https://github.com/elizabethsiegle/unrivaled-data-vises-vs-wnba)
     - Twitter: [@lizziepika](twitter.com/lizziepika)
     - [DigitalOcean SF events](https://luma.com/digitalocean)
