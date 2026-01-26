@@ -145,7 +145,7 @@ fetch('data.json')
           if (elements.length > 0) {
             const index = elements[0].index;
             const player = players[index];
-            alert(`${player.player}\n\n📊 Full Stats:\nPoints: ${player.points}\nRebounds: ${player.rebounds}\nAssists: ${player.assists}\nGames: ${player.games}\nMinutes: ${player.minutes}\nSteals: ${player.steals}\nBlocks: ${player.blocks}`);
+            alert(`${player.player}\n\n📊 Full Stats:\nPoints: ${player.pts}\nGames: ${player.games}\nMinutes: ${player.mins}\nSteals: ${player.stls}\nBlocks: ${player.blk}`);
           }
         },
         plugins: {
@@ -156,7 +156,7 @@ fetch('data.json')
             callbacks: {
               afterLabel: (context) => {
                 const player = players[context.dataIndex];
-                return [`Rebounds: ${player.rebounds}`, `Assists: ${player.assists}`, `Games: ${player.games}`];
+                return [`Rebounds: ${player.rebs}`, `Assists: ${player.asts}`, `Games: ${player.games}`];
               }
             }
           }
@@ -212,7 +212,7 @@ fetch('data.json')
           if (elements.length > 0) {
             const index = elements[0].index;
             const player = players[index];
-            alert(`${player.player}\n\n📊 Contribution to Total Points\n\nPoints: ${player.points}\nRebounds: ${player.rebounds}\nAssists: ${player.assists}`);
+            alert(`${player.player}\n\n📊 Contribution to Total Points\n\nPoints: ${player.pts}\nRebounds: ${player.rebs}\nAssists: ${player.asts}`);
           }
         }
       }
@@ -238,7 +238,7 @@ fetch('data.json')
           if (elements.length > 0) {
             const index = elements[0].index;
             const player = players[index];
-            alert(`${player.player}\n\n📊 Full Stats:\nRebounds: ${player.rebounds}\nPoints: ${player.points}\nAssists: ${player.assists}\nGames: ${player.games}`);
+            alert(`${player.player}\n\n📊 Full Stats:\nRebounds: ${player.rebs}\nPoints: ${player.pts}\nAssists: ${player.asts}\nGames: ${player.games}`);
           }
         },
         plugins: {
@@ -268,7 +268,7 @@ fetch('data.json')
           if (elements.length > 0) {
             const index = elements[0].index;
             const player = players[index];
-            alert(`${player.player}\n\n📊 Full Stats:\nAssists: ${player.assists}\nPoints: ${player.points}\nRebounds: ${player.rebounds}\nGames: ${player.games}`);
+            alert(`${player.player}\n\n📊 Full Stats:\nAssists: ${player.asts}\nPoints: ${player.pts}\nRebounds: ${player.rebs}\nGames: ${player.games}`);
           }
         },
         plugins: {
@@ -336,7 +336,7 @@ fetch('data.json')
     });
 
     // Line Chart: Top 5 Player Stat Profiles
-    const top5 = [...players].sort((a, b) => (b.points || 0) - (a.points || 0)).slice(0, 5);
+    const top5 = [...players].sort((a, b) => (b.pts || 0) - (a.pts || 0)).slice(0, 5);
     const profileColors = ['#667eea', '#ff8c00', '#2ecc71', '#e74c3c', '#9b59b6'];
 
     new Chart(document.getElementById('statProfileChart'), {
@@ -345,7 +345,7 @@ fetch('data.json')
         labels: ['PTS', 'REB', 'AST', 'STL', 'BLK'],
         datasets: top5.map((p, i) => ({
           label: p.player,
-          data: [p.pts || 0, p.rebs || 0, p.asts || 0, p.stls || 0, p.blks || 0],
+          data: [p.pts || 0, p.rebs || 0, p.asts || 0, p.stls || 0, p.blk || 0],
           borderColor: profileColors[i],
           backgroundColor: profileColors[i] + '33',
           fill: true,
@@ -380,7 +380,7 @@ fetch('data.json')
         onClick: (event, elements) => {
           if (elements.length > 0) {
             const p = top5[elements[0].datasetIndex];
-            alert(`${p.player}\n\n📊 Full Profile:\nPoints: ${p.pts}\nRebounds: ${p.rebs}\nAssists: ${p.asts}\nSteals: ${p.stls}\nBlocks: ${p.blks}`);
+            alert(`${p.player}\n\n📊 Full Profile:\nPoints: ${p.pts}\nRebounds: ${p.rebs}\nAssists: ${p.asts}\nSteals: ${p.stls}\nBlocks: ${p.blk}`);
           }
         }
       }
