@@ -1,8 +1,12 @@
-## AI Eng SF: Make AI work for you in the background
+## Demo Night: Self-Updating Sports Data Knowledge Engine
 - [ ] 👋🌊  
+- [ ] DO = AI inference cloud☁️
 - [ ] Demo 🧪
+    - cron x Droplets x scrape x data vis x chat agent
 - [ ] **~~Data Pipelines~~ Knowledge Engine** (Grounding the agent)
+    - FastAPI endpoint + vises make raw stats into something reasonable/queriable
     - ~~multisource ingestion + store~~ context synthesis
+        - only get data we need
     - Serve🍦:
         - dashboards📊 
         - 🕵️‍♀️ queries stats
@@ -17,14 +21,11 @@
 | **Resilience** | Brittle; 😩 if DOM changes or down API | Self-healing |
 | **Cost** | Negligible (server) | Variable (tokens, inf compute). |
 
-- [ ] 2026 Prediction: Agent harnesses replace benchmarks
-    - Real proof = agents doing multi-day tasks
-    - DO droplets, cron jobs = perfect harness playground
-
 
 - [ ] What's Next 🚀
     - Multimodal (📹 analysis)
     - Claude Code on [DO GPU droplets](https://www.digitalocean.com/products/gradient/gpu-droplets)
+    - Claude Code on [Telegram and DO Droplets](https://github.com/ajot/claude-code-telegram-digitalocean)
     - GitHub: [elizabethsiegle/unrivaled-data-vises-vs-wnba](https://github.com/elizabethsiegle/unrivaled-data-vises-vs-wnba)
     - Twitter: [@lizziepika](twitter.com/lizziepika)
     - [DigitalOcean SF events](https://luma.com/digitalocean)
